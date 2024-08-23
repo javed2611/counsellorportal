@@ -1,0 +1,65 @@
+package com.counsellorportal.service;
+
+import java.util.List;
+
+import org.springframework.data.domain.Example;
+import org.springframework.stereotype.Service;
+
+import com.counsellorportal.dto.ViewEnqFilterReq;
+import com.counsellorportal.entites.Counsellor;
+import com.counsellorportal.entites.Enquiry;
+import com.counsellorportal.repo.CounsellorRepo;
+import com.counsellorportal.repo.EnquiryRepo;
+
+@Service
+public class EnquiryServiceImpl implements EnquiryService {
+
+	private EnquiryRepo enquiryRepo;
+
+	private CounsellorRepo counsellorRepo;
+
+//	@Autowired Optional
+	public EnquiryServiceImpl(EnquiryRepo enquiryRepo, CounsellorRepo counsellorRepo) {
+		this.enquiryRepo = enquiryRepo;
+		this.counsellorRepo = counsellorRepo;
+	}
+
+	@Override
+	public boolean saveEnq(Enquiry enq, Integer counsellorId) throws Exception {
+
+		Counsellor counsellor = counsellorRepo.findById(counsellorId).orElse(null);
+		if (counsellor == null) {
+			throw new Exception("No Counsellor Found");
+		}
+		enq.setCounsellor(counsellor);
+
+		Enquiry save = enquiryRepo.save(enq);
+		if (save.getEnquriyId() != null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public List<Enquiry> getAllEnq(Integer counsellorId) {
+		return enquiryRepo.getEnquiriesByCounsellorId(counsellorId);
+	}
+
+	@Override
+	public Enquiry getEnquiryById(Integer enqId) {
+		return enquiryRepo.findById(enqId).orElse(null);
+	}
+
+	@Override
+	public List<Enquiry> getEnqsWithFil(ViewEnqFilterReq vr, Integer counsellorId) {
+
+		// QBE - QueryByExample (Dynamic Query Preparation)
+		// When we don't know how and which filter user is going to apply we will use QBE
+		Enquiry enq = new Enquiry();
+		Example<Enquiry> of = Example.of(enq);
+		List<Enquiry> enqList = enquiryRepo.findAll(null)
+		
+		
+		return null;
+	}
+}

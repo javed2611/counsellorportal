@@ -1,0 +1,51 @@
+package com.counsellorportal.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.counsellorportal.dto.DashboardResponse;
+import com.counsellorportal.entites.Counsellor;
+import com.counsellorportal.entites.Enquiry;
+import com.counsellorportal.entites.Enquiry;
+import com.counsellorportal.repo.CounsellorRepo;
+import com.counsellorportal.repo.EnquiryRepo;
+
+@Service
+public class CounsellorServiceImpl implements CounsellorService {
+
+	@Autowired
+	private CounsellorRepo counsellorRepo;
+
+	@Autowired
+	private EnquiryRepo enquiryRepo;
+
+	@Override
+	public boolean register(Counsellor counsellor) {
+		Counsellor saveCounsellor = counsellorRepo.save(counsellor);
+		if (saveCounsellor.getCounsellorId() != null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Counsellor login(String email, String password) {
+		Counsellor counsellor = counsellorRepo.findByEmailAndPassword(email, password);
+		return counsellor;
+	}
+
+	@Override
+	public DashboardResponse getDashBoard(Integer counsellorId) {
+		DashboardResponse response = new DashboardResponse();
+		List<Enquiry> enqList = enquiryRepo.getEnquiriesByCounsellorId(counsellorId);
+		int total = enqList.size();
+		
+		
+		
+		
+		return null;
+	}
+
+}

@@ -1,0 +1,22 @@
+package com.counsellorportal.dto;
+
+import java.time.LocalDate;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "enquiry_tbl")
+public class Enquiry {
+
+	private Integer enquriyId;
+	private String studentName;
+	private String studentContact;
+	private String courseName;
+	private String classMode;
+	private String enqStatus;
+	private LocalDate createdDate;
+	private LocalDate updatedDate;
+	
+	private Counsellor counsellor;
+}

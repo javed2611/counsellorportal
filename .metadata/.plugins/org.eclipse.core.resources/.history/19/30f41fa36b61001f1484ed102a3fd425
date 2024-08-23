@@ -1,0 +1,7 @@
+package com.counsellorportal.service;
+
+import com.counsellorportal.entites.Counsellor;
+
+public interface CounsellorService {
+	public boolean register(Counsellor counsellor)
+}

@@ -1,0 +1,35 @@
+package com.counsellorportal.dto;
+
+public class DashboardResponse {
+
+	private Long totalEnq;
+	private Long openEnq;
+	private Long enrolled;
+	private Long lost;
+	public Long getTotalEnq() {
+		return totalEnq;
+	}
+	public void setTotalEnq(Long totalEnq) {
+		this.totalEnq = totalEnq;
+	}
+	public Long getOpenEnq() {
+		return openEnq;
+	}
+	public void setOpenEnq(Long openEnq) {
+		this.openEnq = openEnq;
+	}
+	public Long getEnrolled() {
+		return enrolled;
+	}
+	public void setEnrolled(Long enrolled) {
+		this.enrolled = enrolled;
+	}
+	public Long getLost() {
+		return lost;
+	}
+	public void setLost(Long lost) {
+		this.lost = lost;
+	}
+	
+	
+}

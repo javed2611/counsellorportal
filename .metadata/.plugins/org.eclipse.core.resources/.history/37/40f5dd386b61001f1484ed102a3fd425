@@ -1,0 +1,5 @@
+package com.counsellorportal.dto;
+
+public class DashboardResponse {
+
+}

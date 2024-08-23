@@ -1,0 +1,9 @@
+package com.counsellorportal.repo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.counsellorportal.entites.Counsellor;
+
+public interface CounsellorRepo extends JpaRepository<Counsellor, Integer>{
+
+}

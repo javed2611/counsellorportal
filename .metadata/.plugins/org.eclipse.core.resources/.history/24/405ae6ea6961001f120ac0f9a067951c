@@ -1,0 +1,15 @@
+package com.counsellorportal.dto;
+
+import java.time.LocalDate;
+
+public class Counsellor {
+	
+	private Integer counsellorId;
+	private String name;
+	private String email;
+	private String password;
+	private Long contact;
+	
+	private LocalDate createdDate;
+	private LocalDate updatedDate;
+}

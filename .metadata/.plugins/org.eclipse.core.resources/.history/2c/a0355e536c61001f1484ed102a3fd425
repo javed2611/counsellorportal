@@ -1,0 +1,26 @@
+package com.counsellorportal.service;
+
+import com.counsellorportal.dto.DashboardResponse;
+import com.counsellorportal.entites.Counsellor;
+
+public class CounsellorServiceImpl implements CounsellorService {
+
+	@Override
+	public boolean register(Counsellor counsellor) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Counsellor login(String email, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DashboardResponse getDashBoard(Integer counsellorId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

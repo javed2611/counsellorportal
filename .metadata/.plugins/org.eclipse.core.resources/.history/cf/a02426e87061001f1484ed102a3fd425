@@ -1,0 +1,64 @@
+package com.counsellorportal.service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.counsellorportal.dto.DashboardResponse;
+import com.counsellorportal.entites.Counsellor;
+import com.counsellorportal.entites.Enquiry;
+import com.counsellorportal.repo.CounsellorRepo;
+import com.counsellorportal.repo.EnquiryRepo;
+
+@Service
+public class CounsellorServiceImpl implements CounsellorService {
+
+	private CounsellorRepo counsellorRepo;
+
+	private EnquiryRepo enquiryRepo;
+
+	public CounsellorServiceImpl(CounsellorRepo counsellorRepo, EnquiryRepo enquiryRepo) {
+		this.counsellorRepo = counsellorRepo;
+		this.enquiryRepo = enquiryRepo;
+	}
+
+	@Override
+	public boolean register(Counsellor counsellor) {
+		Counsellor saveCounsellor = counsellorRepo.save(counsellor);
+		if (saveCounsellor.getCounsellorId() != null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Counsellor login(String email, String password) {
+		Counsellor counsellor = counsellorRepo.findByEmailAndPassword(email, password);
+		return counsellor;
+	}
+
+	@Override
+	public DashboardResponse getDashBoard(Integer counsellorId) {
+		DashboardResponse response = new DashboardResponse();
+		List<Enquiry> enqList = enquiryRepo.getEnquiriesByCounsellorId(counsellorId);
+		int total = enqList.size();
+
+		int enroll = enqList.stream().filter(e -> e.getEnqStatus().equalsIgnoreCase("Enrolled"))
+				.collect(Collectors.toList()).size();
+
+		int lost = enqList.stream().filter(e -> e.getEnqStatus().equalsIgnoreCase("Lost")).collect(Collectors.toList())
+				.size();
+
+		int open = enqList.stream().filter(e -> e.getEnqStatus().equalsIgnoreCase("Open")).collect(Collectors.toList())
+				.size();
+
+		response.setEnrolled(enroll);
+		response.setLost(lost);
+		response.setOpenEnq(open);
+		response.setTotalEnq(total);
+		return response;
+	}
+
+}
