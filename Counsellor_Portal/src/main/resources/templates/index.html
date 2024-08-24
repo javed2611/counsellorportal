@@ -13,23 +13,26 @@
 <body>
 	<div class="container">
 		<h1>Login Here</h1>
-		<form action="" method="">
+		<font style="color: red;">
+			<p th:text="${errmsg}"></p>
+		</font>
+		<form th:action="@{/login}" th:object="${counsellor}" method="post">
 			<table>
 				<tr>
 					<td>
 						Email:
 					</td>
-					<td><input type="email" </td>
+					<td><input type="email" th:field="*{email}" class="form-control" /></td>
 				</tr>
 				<tr>
 					<td>
 						Password:
 					</td>
-					<td><input type="password" </td>
+					<td><input type="password" th:field="*{password}" class="form-control" /> </td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><button type="button" class="btn btn-outline-success">Login</button></td>
+					<td><input type="submit" value="Login" class="btn btn-outline-success" /></td>
 				</tr>
 			</table>
 
