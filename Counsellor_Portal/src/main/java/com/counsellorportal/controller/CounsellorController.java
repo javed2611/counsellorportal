@@ -9,6 +9,9 @@ import com.counsellorportal.dto.DashboardResponse;
 import com.counsellorportal.entites.Counsellor;
 import com.counsellorportal.service.CounsellorService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class CounsellorController {
 
@@ -31,7 +34,7 @@ public class CounsellorController {
 	}
 
 	@PostMapping("/login")
-	public String login(Counsellor counsellor, Model model) {
+	public String login(Counsellor counsellor, HttpServletRequest httpServletRequest, Model model) {
 
 		Counsellor cou = counsellorService.login(counsellor.getEmail(), counsellor.getPassword());
 
@@ -39,10 +42,55 @@ public class CounsellorController {
 			model.addAttribute("errmsg", "Invalid Credentials");
 			return "index";
 		} else {
+			// valid login then store the counsellorId in session for future purpose.
+
+			HttpSession httpSession = httpServletRequest.getSession(true);
+			httpSession.setAttribute("counsellorId", cou.getCounsellorId());
+
 			DashboardResponse dashInfo = counsellorService.getDashBoard(cou.getCounsellorId());
 			model.addAttribute("dashInfo", dashInfo);
 			return "dashboard";
 		}
 	}
 
+	@GetMapping("/register")
+	public String registerForm(Model mode) {
+
+		Counsellor c = new Counsellor();
+		mode.addAttribute("counsellor", c);
+
+		return "register";
+	}
+
+	@PostMapping("/register")
+	public String Register(Counsellor counsellor, Model model) {
+
+		Counsellor checkEmail = counsellorService.findByEmail(counsellor.getEmail());
+		if (checkEmail != null) {
+			model.addAttribute("ermsg", "Duplicate Email");
+			return "register";
+		}
+		
+		boolean isRegistered = counsellorService.register(counsellor);
+
+		if (isRegistered) {
+			
+			model.addAttribute("sumsg", "Registration Done");
+		
+		}else {
+		
+			model.addAttribute("ermsg", "Registration Failed");
+		
+		}
+		return "register";
+	}
+
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest r) {
+		// get existing session and invalidate it
+		HttpSession sess = r.getSession(false);
+		sess.invalidate();
+		// redirect to login page
+		return "redirect:/";
+	}
 }

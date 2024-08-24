@@ -14,6 +14,6 @@ public interface EnquiryRepo extends JpaRepository<Enquiry, Integer>{
 	
 	
 	// Anotation for custom query to fetch all the enqs by the specific counsellor
-	@Query(value = "select * from enquiry_tbl where counsellorId = :counsellorId", nativeQuery = true)
+	@Query(value = "select * from enquiry_tbl where counsellor_Id = :counsellorId", nativeQuery = true)
 	public List<Enquiry> getEnquiriesByCounsellorId(Integer counsellorId);
 }
