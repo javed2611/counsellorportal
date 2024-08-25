@@ -47,10 +47,19 @@ public class CounsellorController {
 			HttpSession httpSession = httpServletRequest.getSession(true);
 			httpSession.setAttribute("counsellorId", cou.getCounsellorId());
 
-			DashboardResponse dashInfo = counsellorService.getDashBoard(cou.getCounsellorId());
-			model.addAttribute("dashInfo", dashInfo);
-			return "dashboard";
+			return "redirect:/dashboard";
 		}
+	}
+
+	@GetMapping("/dashboard")
+	public String displayDB(HttpServletRequest httpServletRequest, Model model) {
+		HttpSession httpSession = httpServletRequest.getSession(false);
+
+		Integer counsellorId = (Integer) httpSession.getAttribute("counsellorId");
+
+		DashboardResponse dashInfo = counsellorService.getDashBoard(counsellorId);
+		model.addAttribute("dashInfo", dashInfo);
+		return "dashboard";
 	}
 
 	@GetMapping("/register")
@@ -70,17 +79,17 @@ public class CounsellorController {
 			model.addAttribute("ermsg", "Duplicate Email");
 			return "register";
 		}
-		
+
 		boolean isRegistered = counsellorService.register(counsellor);
 
 		if (isRegistered) {
-			
+
 			model.addAttribute("sumsg", "Registration Done");
-		
-		}else {
-		
+
+		} else {
+
 			model.addAttribute("ermsg", "Registration Failed");
-		
+
 		}
 		return "register";
 	}

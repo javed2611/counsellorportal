@@ -3,9 +3,12 @@ package com.counsellorportal.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.counsellorportal.dto.DashboardResponse;
 import com.counsellorportal.entites.Enquiry;
+import com.counsellorportal.service.CounsellorService;
 import com.counsellorportal.service.EnquiryService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,8 +18,10 @@ import jakarta.servlet.http.HttpSession;
 public class EnquiryController {
 
 	private EnquiryService enquiryService;
+	private CounsellorService counsellorService;
 
-	public EnquiryController(EnquiryService enquiryService) {
+	public EnquiryController(CounsellorService counsellorService, EnquiryService enquiryService) {
+		this.counsellorService = counsellorService;
 		this.enquiryService = enquiryService;
 	}
 
@@ -30,20 +35,20 @@ public class EnquiryController {
 	}
 
 	@PostMapping("/addEnquiry")
-	public String enquiry(Enquiry enq, HttpServletRequest httpServletRequest, Model mode) throws Exception {
+	// if we use complete variable name then we don't have to use @ModelAttribute
+	public String enquiry(@ModelAttribute("enq") Enquiry enq, HttpServletRequest httpServletRequest, Model mode)
+			throws Exception {
 
 		HttpSession httpSession = httpServletRequest.getSession(false);
 		Integer counsellorId = (Integer) httpSession.getAttribute("counsellorId");
-
 		boolean isSave = enquiryService.saveEnq(enq, counsellorId);
-
 		if (isSave) {
 			mode.addAttribute("sucmsg", "Enquiry Added");
 		} else {
 			mode.addAttribute("errmsg", "Enquiry Not Added");
 		}
-
 		return "enquiryForm";
 	}
+	
 
 }
