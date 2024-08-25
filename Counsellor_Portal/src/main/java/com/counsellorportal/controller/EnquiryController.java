@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.counsellorportal.dto.DashboardResponse;
 import com.counsellorportal.entites.Enquiry;
-import com.counsellorportal.service.CounsellorService;
 import com.counsellorportal.service.EnquiryService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,10 +16,8 @@ import jakarta.servlet.http.HttpSession;
 public class EnquiryController {
 
 	private EnquiryService enquiryService;
-	private CounsellorService counsellorService;
 
-	public EnquiryController(CounsellorService counsellorService, EnquiryService enquiryService) {
-		this.counsellorService = counsellorService;
+	public EnquiryController( EnquiryService enquiryService) {
 		this.enquiryService = enquiryService;
 	}
 
@@ -49,6 +45,4 @@ public class EnquiryController {
 		}
 		return "enquiryForm";
 	}
-	
-
 }
