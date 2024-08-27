@@ -12,20 +12,23 @@
 <body>
 
 	<div class="container">
-		<ul class="nav">
-			<li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="dashboard">View Dashboard</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="enquiry">Add Enquiry</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="view-enquiries">View Enquiry</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="logout">LogOut</a>
-			</li>
-		</ul>
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="dashboard">Dashboard</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<a class="nav-link active" aria-current="page" href="enquiry">Add Enquiry</a>
+						<a class="nav-link" href="view-enquiries">View Enquiry</a>
+						<a class="nav-link" href="logout">Logout</a>
+					</div>
+				</div>
+			</div>
+		</nav>
 		<hr />
 		<h2>Add New Enquiry</h2>
 
@@ -39,7 +42,7 @@
 
 		<form th:action="@{/addEnquiry}" th:object="${enq}" method="post">
 			<table>
-				
+
 				<tr>
 					<td>Student Name: </td>
 					<td><input type="text" th:field="*{studentName}" required /></td>
