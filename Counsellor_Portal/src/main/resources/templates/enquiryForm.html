@@ -39,9 +39,11 @@
 
 		<form th:action="@{/addEnquiry}" th:object="${enq}" method="post">
 			<table>
+				
 				<tr>
 					<td>Student Name: </td>
 					<td><input type="text" th:field="*{studentName}" required /></td>
+					<input type="hidden" th:field="*{enquriyId}" />
 				</tr>
 				<tr>
 					<td>Student Phone: </td>

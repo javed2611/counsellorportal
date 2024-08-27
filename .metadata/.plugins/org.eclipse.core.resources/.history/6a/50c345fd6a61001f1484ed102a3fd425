@@ -1,9 +1,0 @@
-package com.counsellorportal.repo;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.counsellorportal.dto.Enquiry;
-
-public interface EnquiryRepo extends JpaRepository<Enquiry, Integer>{
-
-}

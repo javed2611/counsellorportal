@@ -1,7 +1,0 @@
-package com.counsellorportal.repo;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface CounsellorRepo extends JpaRepository<T, ID>{
-
-}

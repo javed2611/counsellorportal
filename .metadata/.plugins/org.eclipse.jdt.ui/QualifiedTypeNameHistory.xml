@@ -26,10 +26,8 @@
     <fullyQualifiedTypeName name="com.counsellorportal.repo.EnquiryRepo"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.counsellorportal.repo.CounsellorRepo"/>
-    <fullyQualifiedTypeName name="com.counsellorportal.dto.ViewEnqFilterReq"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Example"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="ch.qos.logback.core.util.StringUtil"/>
     <fullyQualifiedTypeName name="io.micrometer.common.util.StringUtils"/>
     <fullyQualifiedTypeName name="ch.qos.logback.core.model.Model"/>
@@ -38,13 +36,16 @@
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="com.counsellorportal.service.EnquiryService"/>
     <fullyQualifiedTypeName name="com.counsellorportal.controller.EnquiryController"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
-    <fullyQualifiedTypeName name="com.counsellorportal.entites.Enquiry"/>
     <fullyQualifiedTypeName name="org.hibernate.metamodel.internal.EmbeddableInstantiatorPojoStandard"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
-    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServletRequest"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="com.counsellorportal.service.CounsellorService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.counsellorportal.entites.Enquiry"/>
+    <fullyQualifiedTypeName name="com.counsellorportal.dto.ViewEnqFilterReq"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
 </qualifiedTypeNameHistroy>

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.counsellorportal.dto.ViewEnqFilterReq;
 import com.counsellorportal.entites.Enquiry;
@@ -29,9 +30,9 @@ public class EnquiryController {
 		HttpSession httpSession = httpServletRequest.getSession(false);
 		Integer counsellorId = (Integer) httpSession.getAttribute("counsellorId");
 
-		 List<Enquiry> enqsWithFil = enquiryService.getEnqsWithFil(viewEnqFilterReq, counsellorId);
-		
-		 model.addAttribute("enquiries", enqsWithFil);
+		List<Enquiry> enqsWithFil = enquiryService.getEnqsWithFil(viewEnqFilterReq, counsellorId);
+
+		model.addAttribute("enquiries", enqsWithFil);
 
 		return "viewEnqPage";
 
@@ -60,6 +61,15 @@ public class EnquiryController {
 		Enquiry en = new Enquiry();
 		model.addAttribute("enq", en);
 
+		return "enquiryForm";
+	}
+
+	@GetMapping("/editEnq")
+	public String editEnq(@RequestParam("enquriyId") Integer enqId, Model model) {
+		
+		Enquiry enquiry = enquiryService.getEnquiryById(enqId);
+		model.addAttribute("enq", enquiry);
+		
 		return "enquiryForm";
 	}
 
